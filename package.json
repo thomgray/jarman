@@ -1,12 +1,17 @@
 {
   "name": "jarman",
   "version": "1.0.0",
+  "url": "https://github.com/thomgray/jarman",
   "description": "jar manager",
   "main": "index.js",
   "scripts": {
-    "test": "test",
+    "test": "echo \"No test specified\"",
     "start": "node ./index.js"
   },
   "author": "thomddgray@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "np": "^6.2.3"
+  }
 }
