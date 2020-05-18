@@ -1,6 +1,6 @@
 {
   "name": "jarman",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "url": "https://github.com/thomgray/jarman",
   "description": "jar manager",
   "main": "index.js",
