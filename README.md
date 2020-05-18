@@ -36,7 +36,7 @@ list all versions of the specified program
 jarman list hello
 ```
 
-### Use
+### Use
 
 Use the specified version of your program
 
