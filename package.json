@@ -11,7 +11,5 @@
   "author": "thomddgray@gmail.com",
   "license": "ISC",
   "dependencies": {},
-  "devDependencies": {
-    "np": "^6.2.3"
-  }
+  "devDependencies": {}
 }
