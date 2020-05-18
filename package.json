@@ -1,0 +1,12 @@
+{
+  "name": "jarman",
+  "version": "1.0.0",
+  "description": "jar manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node ./index.js"
+  },
+  "author": "thomddgray@gmail.com",
+  "license": "ISC"
+}
