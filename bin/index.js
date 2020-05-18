@@ -1,13 +1,15 @@
+#!/usr/bin/env node
+
 const libs = {
   fs: require('fs'),
   os: require('os'),
   path: require('path'),
-  writer: require('./writer'),
-  jartool: require('./jartool')
+  writer: require('../lib/writer'),
+  jartool: require('../lib/jartool')
 };
 
-const system = require('./system');
-const commands = require('./commands');
+const system = require('../lib/system');
+const commands = require('../lib/commands');
 
 const processArgs = () => {
   const args = process.argv.slice(2).reverse();
