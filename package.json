@@ -5,9 +5,9 @@
   "description": "jar manager",
   "main": "index.js",
   "scripts": {
-    "docker": "docker build docker --tag jarmantestimage",
-    "test": "docker run -it -v $PWD:/jarman -w /jarman -e TERM=$TERM jarmantestimage sh /scripts/test.sh",
-    "test:debug": "docker run -it -v $PWD:/jarman -w /jarman -e TERM=$TERM jarmantestimage bash",
+    "docker": "make docker",
+    "test": "make test",
+    "cucumber": "make cucumber",
     "start": "node ./bin/index.js"
   },
   "bin": {
@@ -17,6 +17,8 @@
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "chai": "^4.2.0",
+    "cucumber": "^6.0.5",
     "mocha": "^7.1.2"
   }
 }

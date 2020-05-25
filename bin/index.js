@@ -4,39 +4,13 @@ const libs = {
   fs: require('fs'),
   os: require('os'),
   path: require('path'),
-  writer: require('../lib/writer'),
-  jartool: require('../lib/jartool')
+  writer: require('../lib/src/writer'),
+  jartool: require('../lib/src/jartool')
 };
 
-const system = require('../lib/system');
-const commands = require('../lib/commands');
-
-const processArgs = () => {
-  const args = process.argv.slice(2).reverse();
-
-  const parsed = {
-    args: {},
-    positional: [],
-    command: undefined
-  }
-
-  let arg;
-  while (args.length) {
-    arg = args.pop();
-
-    if (arg.startsWith('-')) {
-      let value = args.pop()
-      parsed.args[arg] = value;
-    } else if (!parsed.command) {
-      parsed.command = arg;
-    } else {
-      parsed.positional.push(arg);
-    }
-
-  }
-  return parsed;
-};
-
+const system = require('../lib/src/system');
+const commands = require('../lib/src/commands');
+const processArgs = require('../lib/src/args');
 
 function help(args) {
   console.log("so you need help eh?")
@@ -47,10 +21,10 @@ function simpleHelp(args) {
 }
 
 function noCommand(args) {
-  if (args.args.hasOwnProperty('--path')) {
+  if (args.flags.includes('path')) {
     console.log(system.BIN_DIR);
     return true;
-  } else if (args.hasOwnProperty('--version') || args.hasOwnProperty('-v')) {
+  } else if (args.flags.includes('version')) {
     console.log(require('../package.json').version);
     return true;
   }
@@ -59,7 +33,7 @@ function noCommand(args) {
 }
 
 function main() {
-  const args = processArgs();
+  const args = processArgs(process.argv.slice(2));
 
   switch (args.command) {
     case 'version':
@@ -70,10 +44,7 @@ function main() {
       commands.list(args)
       break;
     case 'install':
-      commands.install(args).catch((err) => {
-        console.error(err);
-        process.exit(1)
-      });
+      commands.install(args);
       break;
     case 'uninstall':
       commands.uninstall(args);
