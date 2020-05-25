@@ -20,7 +20,7 @@ const processArgs = () => {
     command: undefined
   }
 
-  let arg
+  let arg;
   while (args.length) {
     arg = args.pop();
 
@@ -35,7 +35,7 @@ const processArgs = () => {
 
   }
   return parsed;
-}
+};
 
 
 function help(args) {
@@ -49,16 +49,23 @@ function simpleHelp(args) {
 function noCommand(args) {
   if (args.args.hasOwnProperty('--path')) {
     console.log(system.BIN_DIR);
-    return true
+    return true;
+  } else if (args.hasOwnProperty('--version') || args.hasOwnProperty('-v')) {
+    console.log(require('../package.json').version);
+    return true;
   }
 
   return false;
 }
 
 function main() {
-  const args = processArgs()
+  const args = processArgs();
 
   switch (args.command) {
+    case 'version':
+      const packageJson = require('../package.json');
+      console.log(packageJson.version);
+      break;
     case 'list':
       commands.list(args)
       break;

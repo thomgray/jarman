@@ -2,6 +2,10 @@
 
 install and execute jars
 
+```
+npm install -g jarman
+```
+
 ## Usage
 
 Simply write some code in your favourite JVM language and build a JAR.

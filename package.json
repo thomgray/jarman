@@ -5,7 +5,9 @@
   "description": "jar manager",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No test specified\"",
+    "docker": "docker build docker --tag jarmantestimage",
+    "test": "docker run -it -v $PWD:/jarman -w /jarman -e TERM=$TERM jarmantestimage sh /scripts/test.sh",
+    "test:debug": "docker run -it -v $PWD:/jarman -w /jarman -e TERM=$TERM jarmantestimage bash",
     "start": "node ./bin/index.js"
   },
   "bin": {
@@ -14,5 +16,7 @@
   "author": "thomddgray@gmail.com",
   "license": "ISC",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "mocha": "^7.1.2"
+  }
 }
