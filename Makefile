@@ -10,7 +10,7 @@ $(mocha): install
 $(dockerimagev): $(dockerfile)
 	docker build docker --tag jarmantestimage > $@
 
-docker_args = -it -v $(PWD):/jarman -w /jarman -e TERM=$(TERM) jarmantestimage
+docker_args = -it -v $(PWD):/jarman -w /jarman jarmantestimage
 
 docker: $(dockerimagev)
 

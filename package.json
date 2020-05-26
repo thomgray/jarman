@@ -15,7 +15,9 @@
   },
   "author": "thomddgray@gmail.com",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "cucumber": "^6.0.5",
