@@ -2,6 +2,11 @@
   "name": "jarman",
   "version": "1.0.2",
   "url": "https://github.com/thomgray/jarman",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thomgray/jarman.git"
+  },
+  "homepage": "https://github.com/thomgray/jarman",
   "description": "jar manager",
   "main": "index.js",
   "scripts": {
