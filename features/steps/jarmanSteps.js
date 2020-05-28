@@ -14,6 +14,10 @@ Given('a hello world jar file exists', function (dataTable) {
     this.stash.jar = jar;
 });
 
+Given('the current version of {string} is {string}', function (name, version) {
+    this.Jarman.use({name, version});
+});
+
 When('I install the jar file', function () {
     this.Jarman.install({ path: this.stash.jar.path });
 });
@@ -37,6 +41,15 @@ When('I install the jar file with commands', function (dataTable) {
         name: name,
         version: version
     });
+});
+
+When('I list manages applications', function () {
+    let output = this.Jarman.list({});
+    this.pushLog(output);
+});
+
+When('I use version {string} of {string}', function (version, name) {
+    this.Jarman.use({name, version});
 });
 
 Then('the jar file is run', function () {

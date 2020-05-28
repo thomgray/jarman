@@ -8,7 +8,7 @@ $(cucumber_js): install
 $(mocha): install
 
 $(dockerimagev): $(dockerfile)
-	docker build docker --tag jarmantestimage > $@
+	docker build docker --tag jarmantestimage | tee $@
 
 docker_args = -it -v $(PWD):/jarman -w /jarman jarmantestimage
 
@@ -17,10 +17,10 @@ docker: $(dockerimagev)
 install:
 	yarn install
 
-test: install
+test: install docker
 	docker run $(docker_args) $(mocha) lib/test
 
-cucumber: install
+cucumber: install docker
 	docker run $(docker_args) $(cucumber_js)
 
 test-all: test cucumber

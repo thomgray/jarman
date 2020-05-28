@@ -27,7 +27,7 @@ When('I execute the {string} command', function (cmd) {
     this.pushLog(output);
 });
 
-Then('the command fails with status {int} and error {string}', function(status, msg) {
+Then('the command fails with status {int} and error {string}', function (status, msg) {
     let cmd = this.Jarman.log.pop();
     expect(cmd.status).to.eq(status);
     expect(cmd.stderr.trim()).to.eq(msg);
@@ -35,4 +35,8 @@ Then('the command fails with status {int} and error {string}', function(status, 
 
 Then('the output is {string}', function (output) {
     expect(this.popLog()).to.eq(output);
+});
+
+Then('the output is', function (docString) {
+    expect(this.popLog()).to.eq(docString);
 });

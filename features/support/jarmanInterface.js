@@ -34,6 +34,11 @@ class Jarman {
         return this.__handleCommand(cmd);
     }
 
+    use({name, version}) {
+        const cmd = `${this.jarmanCmd} use ${name} ${version}`;
+        return this.__handleCommand(cmd);
+    }
+
     __handleCommand(cmd) {
         const result = {
             cmd: cmd,

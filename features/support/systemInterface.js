@@ -1,3 +1,5 @@
+const jar = require('../../lib/test/testutil/jarMaker')
+const fs = require('fs');
 class System {
     constructor(world) {
         // this.bind(world);
@@ -6,11 +8,17 @@ class System {
     }
 
     makeJar({version, name}) {
+        let mainStr = jar.makeMain();
+        let manifestStr = jar.makeManifest({version, name});
         let jarDir = this._homePath('/jar');
+
+        if (!fs.existsSync(jarDir)) {
+            fs.mkdirSync(jarDir);
+        }
+
         let jarPath = this._homePath('/jar/hello.jar');
 
-        this.exec(`mkdir -p $(dirname ${jarPath})`)
-        this.exec(`version=${version} name=${name} /scripts/makejar.sh ${jarPath}`)
+        jar.makeJar(jarPath, manifestStr, mainStr);
 
         return {
             path: jarPath,
