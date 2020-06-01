@@ -15,7 +15,7 @@ Given('a hello world jar file exists', function (dataTable) {
 });
 
 Given('the current version of {string} is {string}', function (name, version) {
-    this.Jarman.use({name, version});
+    this.Jarman.use({ name, version });
 });
 
 When('I install the jar file', function () {
@@ -49,7 +49,15 @@ When('I list manages applications', function () {
 });
 
 When('I use version {string} of {string}', function (version, name) {
-    this.Jarman.use({name, version});
+    this.Jarman.use({ name, version });
+});
+
+When('I uninstall version {string} of {string}', function (version, name) {
+    this.Jarman.uninstall({version, name});
+});
+
+When('I uninstall {string} wholesale', function (name) {
+    this.Jarman.uninstall({name});
 });
 
 Then('the jar file is run', function () {

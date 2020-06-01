@@ -1,14 +1,13 @@
 class Jarman {
     constructor(world) {
         this.world = world;
-        this.jarmanCmd = './bin/index.js'
+        this.jarmanCmd = './bin/index.js --no-prompt'
+        this.log = []
     }
 
     initialize() {
         let jarmanPath = this.world.exec(`${this.jarmanCmd} --path`);
         this.world.setEnv('PATH', `${this.world.env.PATH}:${jarmanPath}`);
-
-        this.log = []
     }
 
     install({ path, name, version }) {
@@ -34,8 +33,13 @@ class Jarman {
         return this.__handleCommand(cmd);
     }
 
-    use({name, version}) {
+    use({ name, version }) {
         const cmd = `${this.jarmanCmd} use ${name} ${version}`;
+        return this.__handleCommand(cmd);
+    }
+
+    uninstall({ name, version }) {
+        const cmd = `${this.jarmanCmd} uninstall ${name} ${version ? version : ''}`;
         return this.__handleCommand(cmd);
     }
 

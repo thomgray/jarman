@@ -23,6 +23,9 @@ test: install docker
 cucumber: install docker
 	docker run $(docker_args) $(cucumber_js)
 
+cucumber-wip: install docker
+	docker run $(docker_args) $(cucumber_js) -t @wip
+
 test-all: test cucumber
 
 docker-run:	docker

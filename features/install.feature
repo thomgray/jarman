@@ -10,8 +10,9 @@ Feature: Install
             | name    | hello |
             | version | 1.0.0 |
         When I install the jar file
-        And I execute the "hello" command
-        Then the jar file is run
+        Then a launcher exists for version "1.0.0" of "hello"
+        And a jar is cached for version "1.0.0" of "hello"
+        And there is a "hello" executable bin linked to version "1.0.0"
 
     Scenario: Install a jar when a version is already installed
         Given a hello world jar is installed
@@ -21,8 +22,11 @@ Feature: Install
             | name    | hello |
             | version | 1.0.1 |
         When I install the jar file
-        And I get the current version of "hello"
-        Then the output is "1.0.1"
+        Then a launcher exists for version "1.0.0" of "hello"
+        And a launcher exists for version "1.0.1" of "hello"
+        And a jar is cached for version "1.0.0" of "hello"
+        And a jar is cached for version "1.0.1" of "hello"
+        And there is a "hello" executable bin linked to version "1.0.1"
 
     Scenario: Install a jar with name and version override
         Given a hello world jar file exists
@@ -31,11 +35,9 @@ Feature: Install
         When I install the jar file with commands
             | name    | goodbye |
             | version | 3.0     |
-        And I get the current version of "goodbye"
-        Then the output is "3.0"
-        # And
-        When I get the current version of "hello"
-        Then the command fails with status 1 and error "No executable found with the name 'hello'"
-        # And
-        When I execute the "goodbye" command
-        Then the jar file is run
+        Then a launcher exists for version "3.0" of "goodbye"
+        And a jar is cached for version "3.0" of "goodbye"
+        And no launcher exists for version "1.0.0" of "hello"
+        And no jar is cached for version "1.0.0" of "hello"
+        And there is a "goodbye" executable bin linked to version "3.0"
+        And there is no "hello" executable
