@@ -11,7 +11,7 @@
   "main": "index.js",
   "scripts": {
     "docker": "make docker",
-    "test": "make test",
+    "test": "make test-all-ci",
     "cucumber": "make cucumber",
     "start": "node ./bin/index.js"
   },
